@@ -1,0 +1,58 @@
+<!doctype html>
+<meta charset="utf-8">
+
+<!-- load D3js -->
+<script src="https://d3plus.org/js/d3.js"></script>
+
+<!-- load D3plus after D3js -->
+<script src="https://d3plus.org/js/d3plus.js"></script>
+
+<!-- create container element for visualization -->
+<div id="viz"></div>
+
+<script>
+
+  // sample data array
+  var sample_data = [
+    {"value": 15, "name": "Vasavi", "group": "MACBIS SI"},
+	{"value": 15, "name": "NANI", "group": "MACBIS SI"},
+	{"value": 15, "name": "KRISTEN", "group": "MACBIS SI"},
+	{"value": 15, "name": "JAY", "group": "MACBIS SI"},
+	{"value": 15, "name": "SHIRA", "group": "MACBIS SI"},
+	{"value": 15, "name": "LORI", "group": "MACBIS SI"},
+	{"value": 15, "name": "PAUL", "group": "MACBIS SI"},
+	{"value": 15, "name": "WEIJING", "group": "MACBIS SI"},
+	{"value": 15, "name": "BRANDON", "group": "MACBIS SI"},
+	{"value": 15, "name": "ABI", "group": "MACBIS SI"},
+	{"value": 15, "name": "TEUNJI", "group": "MACBIS SI"},
+	{"value": 15, "name": "BEN", "group": "MACBIS SI"},
+    {"value": 15, "name": "DA", "group": "DIS"},
+    {"value": 15, "name": "TMSIS", "group": "DIS"},
+    {"value": 15, "name": "AREMAC", "group": "DIS"},
+	{"value": 15, "name": "MDP", "group": "DBES"},
+    {"value": 15, "name": "MACFIN", "group": "DBES"},
+	{"value": 15, "topname": "DSG", "topGroup": "DSG"}
+  ]
+
+  // instantiate d3plus
+  var visualization = d3plus.viz()
+    .container("#viz")     // container DIV to hold the visualization
+    .data(sample_data)     // data to use with the visualization
+    .type("bubbles")       // visualization type
+    .id(["topGroup", "group", "name"]) // nesting keys
+    .depth(1)              // 0-based depth
+    .size(8)         // key name to size bubbles
+	.legend(false)
+    .color("group")        // color by each group	
+	//.title("DSG")
+	.format({"text": function(text,key){
+        return text.toUpperCase()
+      }
+    })	
+	.mouse({                
+      "move": false //,                        // key will also take custom function
+      //"click": function(){alert("Click!")}   
+    })
+    .draw()                // finally, draw the visualization!
+
+</script>
